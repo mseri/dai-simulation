@@ -54,7 +54,6 @@ function init() {
 }
 
 function draw() {
-    //bilctx.clearRect(0,0, 500, 400);
     bilctx.beginPath();
     bilctx.fillStyle="#ff0";
     
@@ -87,10 +86,21 @@ function rgbToL(r, g, b) {
     return (max + min) / 2;
 }
 
+function setBall(event) {
+  event = event || window.event;
+  
+  bilctx.clearRect(0,0, width, height);
+  x = event.pageX - billiard.offsetLeft;
+  y = event.pageY - billiard.offsetTop;
+  angle = 2*Math.PI*Math.random();
+  dx = Math.cos(angle); 
+  dy = Math.sin(angle);
+}
+
 </script>
 </head>
 
-<body onLoad="init();">
+<body onLoad="init();" onclick="setBall();">
   <div id="container">
   <canvas id="bg">
   </canvas> 
